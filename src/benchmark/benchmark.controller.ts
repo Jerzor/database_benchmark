@@ -24,4 +24,14 @@ export class BenchmarkController {
   readMysql() {
     return this.service.runRead('mysql');
   }
+
+  @Post('mongodb/write')
+  writeMongo() {
+    return this.service.runBenchmark('mongodb');
+  }
+
+  @Get('mongodb/read')
+  readMongo() {
+    return this.service.runRead('mongodb');
+  }
 }

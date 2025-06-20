@@ -15,4 +15,7 @@ export default () => ({
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DB,
   },
+  mongodb: {
+    uri: process.env.MONGO_URI,
+  },
 });
