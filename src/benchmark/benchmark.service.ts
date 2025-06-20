@@ -4,6 +4,7 @@ import { faker } from '@faker-js/faker';
 import { DBStrategy } from '../common/interfaces/db-strategy.interface';
 import { PostgresStrategy } from './strategies/postgres.strategy';
 import { MysqlStrategy } from './strategies/mysql.strategy';
+import { MongoDBStrategy } from './strategies/mongodb.strategy';
 
 @Injectable()
 export class BenchmarkService {
@@ -12,10 +13,12 @@ export class BenchmarkService {
   constructor(
     private postgres: PostgresStrategy,
     private mysql: MysqlStrategy,
+    private mongodb: MongoDBStrategy,
   ) {
     this.strategies = {
       postgres: this.postgres,
       mysql: this.mysql,
+      mongodb: this.mongodb,
     };
   }
 

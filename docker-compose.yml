@@ -19,5 +19,13 @@ services:
     ports:
       - '3306:3306'
 
+  mongodb:
+    image: mongo:6
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongodata:/data/db
+
 volumes:
   pgdata:
+  mongodata:
