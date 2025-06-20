@@ -5,6 +5,7 @@ import { DBStrategy } from '../common/interfaces/db-strategy.interface';
 import { PostgresStrategy } from './strategies/postgres.strategy';
 import { MysqlStrategy } from './strategies/mysql.strategy';
 import { MongoDBStrategy } from './strategies/mongodb.strategy';
+import { RedisStrategy } from './strategies/redis.strategy';
 
 @Injectable()
 export class BenchmarkService {
@@ -14,11 +15,13 @@ export class BenchmarkService {
     private postgres: PostgresStrategy,
     private mysql: MysqlStrategy,
     private mongodb: MongoDBStrategy,
+    private redis: RedisStrategy,
   ) {
     this.strategies = {
       postgres: this.postgres,
       mysql: this.mysql,
       mongodb: this.mongodb,
+      redis: this.redis,
     };
   }
 
