@@ -34,4 +34,14 @@ export class BenchmarkController {
   readMongo() {
     return this.service.runRead('mongodb');
   }
+
+  @Post('redis/write')
+  writeRedis() {
+    return this.service.runBenchmark('redis');
+  }
+
+  @Get('redis/read')
+  readRedis() {
+    return this.service.runRead('redis');
+  }
 }

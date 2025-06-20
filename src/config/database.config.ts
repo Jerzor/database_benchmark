@@ -18,4 +18,8 @@ export default () => ({
   mongodb: {
     uri: process.env.MONGO_URI,
   },
+  redis: {
+    host: process.env.REDIS_HOST,
+    port: Number(process.env.REDIS_PORT),
+  },
 });

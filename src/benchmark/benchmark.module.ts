@@ -8,6 +8,7 @@ import { MysqlStrategy } from './strategies/mysql.strategy';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserSchema } from './schemas/user.schema';
 import { MongoDBStrategy } from './strategies/mongodb.strategy';
+import { RedisStrategy } from './strategies/redis.strategy';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { MongoDBStrategy } from './strategies/mongodb.strategy';
     PostgresStrategy,
     MysqlStrategy,
     MongoDBStrategy,
+    RedisStrategy,
   ],
 })
 export class BenchmarkModule {}
