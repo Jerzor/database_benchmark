@@ -16,4 +16,8 @@ export class MongoDBStrategy implements DBStrategy {
   async read(): Promise<HydratedDocument<User>[]> {
     return this.userModel.find().exec();
   }
+
+  async clear(): Promise<void> {
+    await this.userModel.deleteMany({});
+  }
 }

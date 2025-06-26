@@ -32,4 +32,11 @@ export class RedisStrategy implements DBStrategy, OnModuleInit {
       .filter((v): v is string => v !== null)
       .map((v) => JSON.parse(v) as User);
   }
+
+  async clear(): Promise<void> {
+    const keys = await this.client.keys('user:*');
+    if (keys.length > 0) {
+      await this.client.del(...keys);
+    }
+  }
 }

@@ -18,4 +18,9 @@ export class PostgresStrategy implements DBStrategy {
     const repo = this.dataSource.getRepository(User);
     return await repo.find();
   }
+
+  async clear(): Promise<void> {
+    const repo = this.dataSource.getRepository(User);
+    await repo.clear();
+  }
 }
