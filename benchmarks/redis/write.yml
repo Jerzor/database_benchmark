@@ -1,0 +1,15 @@
+config:
+  target: 'http://localhost:3000'
+  phases:
+    - duration: 30
+      arrivalRate: 10
+  defaults:
+    headers:
+      Content-Type: application/json
+scenarios:
+  - name: Redis Write
+    flow:
+      - post:
+          url: '/benchmark/redis/clear'
+      - post:
+          url: '/benchmark/redis/write'
