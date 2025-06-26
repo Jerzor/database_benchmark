@@ -27,6 +27,9 @@ export class RedisStrategy implements DBStrategy, OnModuleInit {
 
   async read(): Promise<User[]> {
     const keys = await this.client.keys('user:*');
+
+    if (!keys.length) return [];
+
     const values = await this.client.mget(...keys);
     return values
       .filter((v): v is string => v !== null)
