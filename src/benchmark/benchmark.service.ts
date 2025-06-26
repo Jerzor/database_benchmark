@@ -41,4 +41,8 @@ export class BenchmarkService {
   async runRead(db: string) {
     return this.strategies[db].read();
   }
+
+  async clear(db: string) {
+    return this.strategies[db].clear();
+  }
 }
