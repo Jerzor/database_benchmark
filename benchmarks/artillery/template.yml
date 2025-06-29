@@ -1,0 +1,13 @@
+config:
+  target: 'http://localhost:3000'
+  phases:
+    - duration: {{duration}}
+      arrivalRate: {{arrivalRate}}
+  defaults:
+    headers:
+      Content-Type: application/json
+scenarios:
+  - name: Benchmark Test
+    flow:
+      - {{method}}:
+          url: "{{endpoint}}"
