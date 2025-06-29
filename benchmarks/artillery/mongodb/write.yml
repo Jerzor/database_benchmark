@@ -10,6 +10,4 @@ scenarios:
   - name: MongoDB Write
     flow:
       - post:
-          url: '/benchmark/mongodb/clear'
-      - post:
           url: '/benchmark/mongodb/write'

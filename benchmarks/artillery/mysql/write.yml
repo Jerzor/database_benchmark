@@ -7,9 +7,7 @@ config:
     headers:
       Content-Type: application/json
 scenarios:
-  - name: Redis Write
+  - name: MySql Write
     flow:
       - post:
-          url: '/benchmark/redis/clear'
-      - post:
-          url: '/benchmark/redis/write'
+          url: '/benchmark/mysql/write'
