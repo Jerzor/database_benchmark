@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { User } from './benchmark/entities/user.entity';
 import databaseConfig from './config/database.config';
 import { BenchmarkModule } from './benchmark/benchmark.module';
@@ -13,7 +13,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     /** postgres */
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
+      useFactory: (config: ConfigService): TypeOrmModuleOptions => ({
         ...config.get('postgres'),
         entities: [User],
         synchronize: true,
@@ -24,7 +24,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     TypeOrmModule.forRootAsync({
       name: 'mysql',
       inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
+      useFactory: (config: ConfigService): TypeOrmModuleOptions => ({
         ...config.get('mysql'),
         entities: [User],
         synchronize: true,
