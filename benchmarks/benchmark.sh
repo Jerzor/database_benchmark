@@ -35,7 +35,8 @@ if [[ "$TOOL" == "artillery" ]]; then
        s|{{duration}}|$DURATION|g;
        s|{{arrivalRate}}|$RATE|g" $TEMPLATE > "$TEMPFILE"
 
-  artillery run --output benchmarks/artillery-result.json "$TEMPFILE"
+  OUTFILE="benchmarks/${TOOL}_${DB}_${MODE}_${DURATION}s_${RATE}.json"
+  artillery run --output "$OUTFILE" "$TEMPFILE"
   rm -f "$TEMPFILE"
 
 # ===== K6 =====
