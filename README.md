@@ -20,7 +20,7 @@ To evaluate and compare the speed of both writing and reading data of different 
 ## Technologies
 
 - NestJS (Node.js)
-- Artillery library for running performance tests (future support planned for k6)
+- Artillery library and k6 tool for running performance tests
 - Docker and Docker Compose for running database environments
 
 ---
