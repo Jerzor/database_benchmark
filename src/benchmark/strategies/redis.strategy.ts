@@ -17,9 +17,10 @@ export class RedisStrategy implements DBStrategy, OnModuleInit {
   async write(data: User[]): Promise<{ inserted: number }> {
     const pipeline = this.client.pipeline();
 
-    data.forEach((item, index) => {
-      pipeline.set(`user:${index}`, JSON.stringify(item));
-    });
+    for (const item of data) {
+      const id = await this.client.incr('user:id');
+      pipeline.set(`user:${id}`, JSON.stringify(item));
+    }
 
     await pipeline.exec();
     return { inserted: data.length };
@@ -37,9 +38,6 @@ export class RedisStrategy implements DBStrategy, OnModuleInit {
   }
 
   async clear(): Promise<void> {
-    const keys = await this.client.keys('user:*');
-    if (keys.length > 0) {
-      await this.client.del(...keys);
-    }
+    await this.client.flushdb();
   }
 }
