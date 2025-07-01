@@ -27,6 +27,7 @@ const interval = setInterval(() => {
     cpuAvg: (cpuLoad.reduce((a, b) => a + b, 0) / cpuLoad.length).toFixed(4),
     memoryUsed: totalMem - freeMem,
     memoryTotal: totalMem,
+    memoryPercentage: `${(((totalMem - freeMem) / totalMem) * 100).toFixed(4)}%`,
   });
 }, 1000);
 
