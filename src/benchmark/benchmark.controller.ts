@@ -1,72 +1,88 @@
 import { Controller, Get, Post } from '@nestjs/common';
 import { BenchmarkService } from './benchmark.service';
 import { DatabaseType } from '../common/enums/database.enum';
+import { ApiTags } from '@nestjs/swagger';
 
-@Controller('benchmark')
-export class BenchmarkController {
+@ApiTags('PostgreSQL')
+@Controller('benchmark/postgres')
+export class PostgresBenchmarkController {
   constructor(private readonly service: BenchmarkService) {}
 
-  // PostgreSQL
-  @Post('postgres/write')
+  @Post('write')
   write() {
     return this.service.runBenchmark(DatabaseType.Postgres);
   }
 
-  @Get('postgres/read')
+  @Get('read')
   read() {
     return this.service.runRead(DatabaseType.Postgres);
   }
 
-  @Post('postgres/clear')
-  clearPostgres() {
+  @Post('clear')
+  clear() {
     return this.service.clear(DatabaseType.Postgres);
   }
+}
 
-  // MySQL
-  @Post('mysql/write')
-  writeMysql() {
+@ApiTags('MySQL')
+@Controller('benchmark/mysql')
+export class MysqlBenchmarkController {
+  constructor(private readonly service: BenchmarkService) {}
+
+  @Post('write')
+  write() {
     return this.service.runBenchmark(DatabaseType.MySQL);
   }
 
-  @Get('mysql/read')
-  readMysql() {
+  @Get('read')
+  read() {
     return this.service.runRead(DatabaseType.MySQL);
   }
 
-  @Post('mysql/clear')
-  clearMysql() {
+  @Post('clear')
+  clear() {
     return this.service.clear(DatabaseType.MySQL);
   }
+}
 
-  // MongoDB
-  @Post('mongodb/write')
-  writeMongo() {
+@ApiTags('MongoDB')
+@Controller('benchmark/mongodb')
+export class MongoBenchmarkController {
+  constructor(private readonly service: BenchmarkService) {}
+
+  @Post('write')
+  write() {
     return this.service.runBenchmark(DatabaseType.MongoDB);
   }
 
-  @Get('mongodb/read')
-  readMongo() {
+  @Get('read')
+  read() {
     return this.service.runRead(DatabaseType.MongoDB);
   }
 
-  @Post('mongodb/clear')
-  clearMongo() {
+  @Post('clear')
+  clear() {
     return this.service.clear(DatabaseType.MongoDB);
   }
+}
 
-  // Redis
-  @Post('redis/write')
-  writeRedis() {
+@ApiTags('Redis')
+@Controller('benchmark/redis')
+export class RedisBenchmarkController {
+  constructor(private readonly service: BenchmarkService) {}
+
+  @Post('write')
+  write() {
     return this.service.runBenchmark(DatabaseType.Redis);
   }
 
-  @Get('redis/read')
-  readRedis() {
+  @Get('read')
+  read() {
     return this.service.runRead(DatabaseType.Redis);
   }
 
-  @Post('redis/clear')
-  clearRedis() {
+  @Post('clear')
+  clear() {
     return this.service.clear(DatabaseType.Redis);
   }
 }
