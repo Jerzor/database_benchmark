@@ -53,6 +53,10 @@ To evaluate and compare the speed of both writing and reading data of different 
    docker-compose up -d
    ```
 
+5. API documentation is available at:
+
+   [http://localhost:3000/api](http://localhost:3000/api)
+
 ---
 
 ## Running Tests
