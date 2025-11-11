@@ -3,6 +3,7 @@ import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { User } from '../entities/user.entity';
 import { DBStrategy } from '../../common/interfaces/db-strategy.interface';
+import { DatabaseStatsDto } from '../../common/dto/database-stats.dto';
 
 @Injectable()
 export class PostgresStrategy implements DBStrategy {
@@ -22,5 +23,29 @@ export class PostgresStrategy implements DBStrategy {
   async clear(): Promise<void> {
     const repo = this.dataSource.getRepository(User);
     await repo.clear();
+  }
+
+  async stats(): Promise<DatabaseStatsDto> {
+    const repo = this.dataSource.getRepository(User);
+    const count = await repo.count();
+    return { recordCount: count };
+  }
+
+  async deleteRecords(count: number): Promise<{ deleted: number }> {
+    const repo = this.dataSource.getRepository(User);
+
+    const records = await repo.find({
+      select: ['id'],
+      take: count,
+    });
+
+    if (records.length === 0) {
+      return { deleted: 0 };
+    }
+
+    const ids = records.map((r) => r.id);
+    const result = await repo.delete(ids);
+
+    return { deleted: result.affected ?? 0 };
   }
 }

@@ -2,7 +2,7 @@
   "name": "benchmark-project",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "Krzysztof Jerzyk",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -28,6 +28,8 @@
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/swagger": "^11.2.0",
     "@nestjs/typeorm": "^11.0.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.2",
     "ioredis": "^5.6.1",
     "mongoose": "^8.16.0",
     "mysql2": "^3.14.1",
